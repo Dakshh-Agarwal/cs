@@ -1325,10 +1325,10 @@ The Windows security audit successfully identified potential vulnerabilities inc
 | Browser shows proxy error | Confirm Burp Suite is open and running before browsing |
 
 exp3
-1.dd if=/dev/zero of=/home/bhavagna/practice_disk.dd bs=1M count=100
-2.mkfs.ext4 /home/bhavagna/practice_disk.dd
-3.mkdir /home/bhavagna/mnt
-4.sudo mount -o loop /home/bhavagna/practice_disk.dd /home/bhavagna/mnt
-5.echo "check" | sudo tee /home/bhavagna/mnt/evidence.txt
-6.sudo umount /home/bhavagna/mnt
-7.sudo autopsy
+1. dd if=/dev/zero of=/home/bhavagna/practice_disk.dd bs=1M count=100
+2. mkfs.ext4 /home/bhavagna/practice_disk.dd
+3. mkdir /home/bhavagna/mnt
+4. sudo mount -o loop /home/bhavagna/practice_disk.dd /home/bhavagna/mnt
+5. echo "check" | sudo tee /home/bhavagna/mnt/evidence.txt
+6. sudo umount /home/bhavagna/mnt
+7. sudo autopsy
