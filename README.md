@@ -1323,3 +1323,12 @@ The Windows security audit successfully identified potential vulnerabilities inc
 | Kali Linux frozen | Right-click desktop → Open Terminal → try the command again |
 | ADB device not found | Make sure the emulator is fully booted before running ADB commands |
 | Browser shows proxy error | Confirm Burp Suite is open and running before browsing |
+
+exp3
+dd if=/dev/zero of=/home/bhavagna/practice_disk.dd bs=1M count=100
+mkfs.ext4 /home/bhavagna/practice_disk.dd
+mkdir /home/bhavagna/mnt
+sudo mount -o loop /home/bhavagna/practice_disk.dd /home/bhavagna/mnt
+echo "check" | sudo tee /home/bhavagna/mnt/evidence.txt
+sudo umount /home/bhavagna/mnt
+sudo autopsy
