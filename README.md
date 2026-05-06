@@ -1324,6 +1324,30 @@ The Windows security audit successfully identified potential vulnerabilities inc
 | ADB device not found | Make sure the emulator is fully booted before running ADB commands |
 | Browser shows proxy error | Confirm Burp Suite is open and running before browsing |
 
+
+# Exp: Network Forensics
+Aim: To capture and analyse network packets using Wireshark and understand network forensics techniques. 
+Tools Required: 
+1. Kali Linux 
+2. Wireshark 
+
+Procedure: 
+1.	Open kali linux terminal Type wireshark &
+2.	Protocol Analysis (TCP/UDP/HTTP) & Applying Filters
+3. Following TCP Stream
+4. Identifying Suspicious Traffic
+   1. Open kali linux terminal Type nmap –sS
+   2. Open wireshark Use this filter: tcp.flags.syn == 1 && tcp.flags.ack == 0
+5. Statistics
+  1. Capture File Properties
+  2. Resolved Address
+   3. Protocol Hierarchy Statistics
+  4. Conversations
+  5. Packet Length
+  6. End Points
+  7. I/O Graphs
+
+
 exp3
 1. dd if=/dev/zero of=/home/bhavagna/practice_disk.dd bs=1M count=100
 2. mkfs.ext4 /home/bhavagna/practice_disk.dd
