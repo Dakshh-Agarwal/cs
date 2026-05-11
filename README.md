@@ -2677,3 +2677,83 @@ The Windows security audit successfully identified potential vulnerabilities inc
 | Python script error | Check that you installed required libraries with `pip install` |
 | Firewall rule not created | Make sure Command Prompt was opened as Administrator |
 | Autopsy not starting | Make sure you typed `sudo autopsy` not just `autopsy` |
+
+---------------------------FIREWALL CODE------------------------------------------
+import requests
+import csv
+import subprocess
+
+# Download malicious IP blocklist
+response = requests.get(
+    "https://feodotracker.abuse.ch/downloads/ipblocklist.csv"
+).text
+
+# Delete old firewall rule
+rule = 'netsh advfirewall firewall delete rule name="BadIP"'
+subprocess.run(["PowerShell", "-Command", rule])
+
+# Read CSV data
+mycsv = csv.reader(
+    filter(lambda x: not x.startswith("#"), response.splitlines())
+)
+
+# Add firewall rules
+for row in mycsv:
+    ip = row[1]
+
+    if ip != "dst_ip":
+        print("Added Rule to block:", ip)
+
+        rule = (
+            "netsh advfirewall firewall add rule "
+            "name='BadIP' Dir=Out Action=Block RemoteIP=" + ip
+        )
+
+        subprocess.run(["PowerShell", "-Command", rule])
+-------------------------------------------------------------------------
+PASSWORD CHECK:
+import re
+def check_password_strength(password):
+    if len(password) < 8:
+        return "Weak: Password must be at least 8 characters long."
+
+    if not any(char.isdigit() for char in password):
+        return "Weak: Password must include at least one number."
+
+    if not any(char.isupper() for char in password):
+        return "Weak: Password must include at least one uppercase letter."
+
+    if not any(char.islower() for char in password):
+        return "Weak: Password must include at least one lowercase letter."
+
+    if not re.search(r'[!@#$%^&*(),.?":{}|<>]', password):
+        return "Medium: Add special characters to make your password stronger."
+
+    return "Strong: Your password is secure!"
+
+
+def password_checker():
+    print("Welcome to the Password Strength Checker!")
+
+    while True:
+        password = input("\nEnter your password (or type 'exit' to quit): ")
+
+        if password.lower() == "exit":
+            print("Thank you for using the Password Strength Checker! Goodbye!")
+            break
+
+        result = check_password_strength(password)
+        print(result)
+
+
+if __name__ == "__main__":
+    password_checker()
+------------------------------------------------------------------------------------------------
+FTK STEPS/CODES:
+1. dd if=/dev/zero of=/home/bhavagna/practice_disk.dd bs=1M count=100
+2. mkfs.ext4 /home/bhavagna/practice_disk.dd
+3. mkdir /home/bhavagna/mnt
+4. sudo mount -o loop /home/bhavagna/practice_disk.dd /home/bhavagna/mnt
+5. echo "check" | sudo tee /home/bhavagna/mnt/evidence.txt
+6. sudo umount /home/bhavagna/mnt
+7. sudo autopsy
