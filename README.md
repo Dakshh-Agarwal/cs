@@ -2679,6 +2679,7 @@ The Windows security audit successfully identified potential vulnerabilities inc
 | Autopsy not starting | Make sure you typed `sudo autopsy` not just `autopsy` |
 
 ---------------------------FIREWALL CODE------------------------------------------
+```python
 import requests
 import csv
 import subprocess
@@ -2710,8 +2711,10 @@ for row in mycsv:
         )
 
         subprocess.run(["PowerShell", "-Command", rule])
+```
 -------------------------------------------------------------------------
 PASSWORD CHECK:
+```python
 import re
 def check_password_strength(password):
     if len(password) < 8:
@@ -2748,6 +2751,7 @@ def password_checker():
 
 if __name__ == "__main__":
     password_checker()
+```
 ------------------------------------------------------------------------------------------------
 FTK STEPS/CODES:
 1. dd if=/dev/zero of=/home/bhavagna/practice_disk.dd bs=1M count=100
